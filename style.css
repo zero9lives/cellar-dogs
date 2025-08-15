@@ -1,0 +1,42 @@
+body {
+    background-color:  rgb(179, 188, 183);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+h1 {
+  color: black;
+  text-align: center;
+  padding: 200px, 20px;
+  font-size: 90pt;
+}
+div {
+  display: flex;
+  padding-bottom: 20px;
+  flex-direction: row;
+  justify-content: center;
+}
+button {
+  display: flex;
+  padding: 20px;
+  margin-right: 20px;
+  background-color: aliceblue;
+  border: none;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: large;
+}
+button:hover {
+  background-color: crimson;
+  color: aliceblue;
+} 
+a {
+  text-decoration: none;
+  color: black;
+}
+a:hover {
+  color: aliceblue;
+}
+p {
+  color: black;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  justify-self: center;
+}
