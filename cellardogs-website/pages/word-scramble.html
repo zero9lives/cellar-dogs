@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ian.zxx</title>
-
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
 </head>
 <body>
   <h1>Cellar Dogs</h1>
@@ -25,13 +26,24 @@
   </section>
   
   <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDh7E-223PicBisdncqF-_ikwH0g5bjn8w",
+      authDomain: "cellardogs-8c63a.firebaseapp.com",
+      projectId: "cellardogs-8c63a",
+      storageBucket: "cellardogs-8c63a.firebasestorage.app",
+      messagingSenderId: "680527952911",
+      appId: "1:680527952911:web:af64d3370400da0962377a",
+      measurementId: "G-ZP74GWSF4X"
+  };
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
     document.getElementById('solveBtn').addEventListener('click', () => {
-      fetch('https://zero9lives.github.io/cellar-dogs/cellardogs-website', {
-        method: 'POST'
-      })
-      .then(res => res.json())
-      .then(() => alert('Puzzle solved! Go back to the game.'));
+      firebase.database().ref("puzzleSolved").set(true)
+        .then(() => alert("Puzzle solved!"));
     });
   </script>
 </body>
+
 </html>
