@@ -6,9 +6,6 @@
   <title>ian.zxx</title>
 </head>
 <body>
-  <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-  <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
-  
   <h1>Cellar Dogs</h1>
 
   <section>
@@ -21,9 +18,10 @@
       <p>Click the button to "solve" it.</p>
       <button id="solveBtn"><a href="../solved.html">Solve</a></button>
     </div>
-  
-    
   </section>
+
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
   
   <script>
     import { initializeApp } from "firebase/app";
@@ -50,6 +48,7 @@
 </body>
 
 </html>
+
 
 
 
