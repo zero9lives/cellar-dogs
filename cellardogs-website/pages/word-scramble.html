@@ -35,8 +35,8 @@
       measurementId: "G-ZP74GWSF4X"
   };
 
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
+   const app = initializeApp(firebaseConfig);
+   const analytics = getAnalytics(app);
 
     document.getElementById('solveBtn').addEventListener('click', () => {
       firebase.database().ref("puzzleSolved").set(true)
@@ -46,4 +46,5 @@
 </body>
 
 </html>
+
 
