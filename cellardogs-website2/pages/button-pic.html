@@ -701,7 +701,7 @@
     const database = firebase.database();
     
     // MODIFIED: Puzzle solve button with URL parameter redirect
-    document.getElementById('solveBtn').addEventListener('click', (event) => {
+    document.getElementById('solveBtn').addEventListener('click', (event) => {if (result == 194) {
         const puzzleId = event.target.getAttribute('data-puzzle');
         
         firebase.database().ref(`users/${userId}/puzzles/${puzzleId}`).set({
@@ -709,22 +709,13 @@
             timestamp: Date.now()
         }).then(() => {
             alert("Puzzle solved!");
-            
-            // REDIRECT WITH USER ID IN URL
-            window.location.href = `rpgmaker.html?userId=${userId}`;
-            // Or if RPG Maker is in a different folder:
-            // window.location.href = `../rpgmaker/index.html?userId=${userId}`;
-        }).catch((error) => {
-            console.error("Firebase error:", error);
-            // Still redirect even if Firebase fails
-            window.location.href = `rpgmaker.html?userId=${userId}`;
-        });
     });
 
   </script>
 </body>
 
 </html>
+
 
 
 
