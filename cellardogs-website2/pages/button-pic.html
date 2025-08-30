@@ -690,7 +690,7 @@
     const database = firebase.database();
     
     // PART 3: Button click handler (REPLACE your existing event listener)
-    document.getElementById('solveBtn').addEventListener('click', (event) => {
+    document.getElementById('solveBtn').addEventListener('click', (event) => { if (result == 1) {
         const puzzleId = event.target.getAttribute('data-puzzle');
         
         console.log(`Solving ${puzzleId} for user ${userId}...`);
@@ -707,9 +707,10 @@
             console.error("❌ Firebase error:", error);
             window.location.href = `solved-${puzzleId}.html`;
         });
-    });
+    }});
 
   </script>
 </body>
 
 </html>
+
