@@ -679,15 +679,16 @@
       }
     }
     
-    // PART 1: Generate/get user ID through URL (PUT THIS FIRST)
-    firebase.database().ref(`users/${userId}/puzzles/${puzzleId}`).set({
-    solved: true,
-    timestamp: Date.now()
-}).then(() => {
-    alert("Puzzle solved!");
-    // Pass user ID to RPG Maker page
-    window.location.href = `rpgmaker.html?userId=${userId}`;
-});
+  // PART 1: Generate/get user ID (PUT THIS FIRST)
+    let userId = localStorage.getItem('gameUserId');
+    if (!userId) {
+        userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+        localStorage.setItem('gameUserId', userId);
+        console.log("New user ID created:", userId);
+    } else {
+        console.log("Existing user ID:", userId);
+    }
+
     
     // PART 2: Firebase config
     const firebaseConfig = {
@@ -727,6 +728,7 @@
 </body>
 
 </html>
+
 
 
 
