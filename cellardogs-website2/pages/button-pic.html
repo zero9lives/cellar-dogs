@@ -684,12 +684,8 @@
     if (!userId) {
         userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
         localStorage.setItem('gameUserId', userId);
-        console.log("New user ID created:", userId);
-    } else {
-        console.log("Existing user ID:", userId);
     }
 
-    
     // PART 2: Firebase config
     const firebaseConfig = {
     apiKey: "AIzaSyDh7E-223PicBisdncqF-_ikwH0g5bjn8w",
@@ -704,30 +700,32 @@
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
     
-    // PART 3: Button click handler (REPLACE your existing event listener)
-    document.getElementById('solveBtn').addEventListener('click', (event) => { if (result == 1) {
+    // MODIFIED: Puzzle solve button with URL parameter redirect
+    document.getElementById('solveBtn').addEventListener('click', (event) => {
         const puzzleId = event.target.getAttribute('data-puzzle');
-        
-        console.log(`Solving ${puzzleId} for user ${userId}...`);
         
         firebase.database().ref(`users/${userId}/puzzles/${puzzleId}`).set({
             solved: true,
             timestamp: Date.now()
         }).then(() => {
-            console.log(`✅ ${puzzleId} saved for ${userId}!`);
             alert("Puzzle solved!");
-            // Simple redirect, no parameters needed
-            // window.location.href = `solved-${puzzleId}.html`;
+            
+            // REDIRECT WITH USER ID IN URL
+            window.location.href = `rpgmaker.html?userId=${userId}`;
+            // Or if RPG Maker is in a different folder:
+            // window.location.href = `../rpgmaker/index.html?userId=${userId}`;
         }).catch((error) => {
-            console.error("❌ Firebase error:", error);
-            // window.location.href = `solved-${puzzleId}.html`;
+            console.error("Firebase error:", error);
+            // Still redirect even if Firebase fails
+            window.location.href = `rpgmaker.html?userId=${userId}`;
         });
-    }});
+    });
 
   </script>
 </body>
 
 </html>
+
 
 
 
