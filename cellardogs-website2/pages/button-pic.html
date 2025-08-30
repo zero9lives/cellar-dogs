@@ -665,24 +665,17 @@
       }
     }
 
-    // add this function to the correct buttons 
-    // check to see if the button is toggled
-    // if result is less than 96, then we check to see if the correct button has the "is-toggled" class
-    // it runs the puzzleSolved function to check if result = 96 or not (if the puzzle is solved or nor)
-    function toggleCorrectButton(selector) {
-      const button = document.querySelector(selector);
-      if (!button.classList.contains('is-toggled')) {
-        button.classList.add('is-toggled');
-        button.innerHTML = '1';
-        result += 1;
-      } else {
-        button.classList.remove('is-toggled');
-        button.innerHTML = '0';
-        result -= 1;
-      }
+    // PART 1: Generate/get user ID (PUT THIS FIRST)
+    let userId = localStorage.getItem('gameUserId');
+    if (!userId) {
+        userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+        localStorage.setItem('gameUserId', userId);
+        console.log("New user ID created:", userId);
+    } else {
+        console.log("Existing user ID:", userId);
     }
 
-    //const firebaseConfig and firebase.initializeApp() is same for all puzzle pages
+    // PART 2: Firebase config
     const firebaseConfig = {
     apiKey: "AIzaSyDh7E-223PicBisdncqF-_ikwH0g5bjn8w",
     authDomain: "cellardogs-8c63a.firebaseapp.com",
@@ -693,32 +686,30 @@
     measurementId: "G-ZP74GWSF4X"
   };
   
-  firebase.initializeApp(firebaseConfig);
-  const database = firebase.database();
-
-  document.getElementById('solveBtn').addEventListener('click', (event) => { if (result == 194) {
-    alert('Hacking succesful');
-
-    // Get puzzle ID from data attribute
-    const puzzleId = event.target.getAttribute('data-puzzle');
-      
-    console.log(`Solving ${puzzleId}...`);
-      
-    // Save to Firebase with puzzle-specific path
-    firebase.database().ref(`puzzles/${puzzleId}`).set({
-        solved: true,
-        timestamp: Date.now()
-    }).then(() => {
-        console.log(`✅ ${puzzleId} saved to Firebase!`);
-        alert(`${puzzleId} solved!`);
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+    
+    // PART 3: Button click handler (REPLACE your existing event listener)
+    document.getElementById('solveBtn').addEventListener('click', (event) => {
+        const puzzleId = event.target.getAttribute('data-puzzle');
         
-        // Navigate to appropriate solved page
-        window.location.href = `solved-${puzzleId}.html`;
-    }).catch((error) => {
-        console.error("❌ Firebase error:", error);
-        window.location.href = `solved-${puzzleId}.html`;
+        console.log(`Solving ${puzzleId} for user ${userId}...`);
+        
+        firebase.database().ref(`users/${userId}/puzzles/${puzzleId}`).set({
+            solved: true,
+            timestamp: Date.now()
+        }).then(() => {
+            console.log(`✅ ${puzzleId} saved for ${userId}!`);
+            alert("Puzzle solved!");
+            // Simple redirect, no parameters needed
+            window.location.href = `solved-${puzzleId}.html`;
+        }).catch((error) => {
+            console.error("❌ Firebase error:", error);
+            window.location.href = `solved-${puzzleId}.html`;
+        });
     });
-  }});
+
   </script>
 </body>
+
 </html>
