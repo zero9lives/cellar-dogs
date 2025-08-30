@@ -717,10 +717,10 @@
             console.log(`✅ ${puzzleId} saved for ${userId}!`);
             alert("Puzzle solved!");
             // Simple redirect, no parameters needed
-            window.location.href = `solved-${puzzleId}.html`;
+            // window.location.href = `solved-${puzzleId}.html`;
         }).catch((error) => {
             console.error("❌ Firebase error:", error);
-            window.location.href = `solved-${puzzleId}.html`;
+            // window.location.href = `solved-${puzzleId}.html`;
         });
     }});
 
@@ -728,6 +728,7 @@
 </body>
 
 </html>
+
 
 
 
