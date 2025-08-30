@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head></head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ian.zxx</title>
+
+  <style>
+    body {
+    color: rgb(255 255 255 / 0.75);
+    font-family: 'Anonymous Pro', monospace;
+    background-color: rgb(025 025 025 / 1.0);
+    }
+    button {
+      display: flex;
+      padding: 10px;
+      border: none;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      font-size: large;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    button:hover {
+      background-color: crimson;
+      color: aliceblue;
+    } 
+    button:active {
+      text-decoration: underline;
+    }
+    div {
+      margin-top: 40px;
+    }
+    .startButton {
+      margin-top: 50px;
+      justify-self: center;
+      padding: 20px 60px;
+      font-size: 40pt;
+      border-radius: 20px;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+    }
+    a:hover {
+      color: aliceblue;
+    }
+
+    
+  </style>
+</head>
+<body>
+  <button><a href="../index.html">Home</a></button>
+
+  <div>
+    <button class="js-activate-button" onclick="
+      typeWriter();
+    ">Welcome</button>
+  </div>
+
+  <div class="js-message">
+  </div>
+
+  <button class="js-start-button startButton" 
+  style="display: none;">
+  
+  </button>
+  
+
+  <script>
+    var i = 0;
+    let txt = `인공지능 해킹 프로그램에 오신것을 환영합니다.
+    맵 곳곳에 해킹 가능한 기기들이 있으며
+    프로그램을 이용해 기기 또는 문 잠금을 풀거나, 주요 정보를 얻을 수 있습니다. - - - - - - - 해킹을 시작하시겠습니까?`;
+    var speed = 50; /* The speed/duration of the effect in milliseconds */
+
+    function typeWriter() {
+      if (i < txt.length) {
+        document.querySelector('.js-message').innerHTML += txt.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      } 
+      document.querySelector('.js-activate-button').remove(); //remove button after click
+
+      setTimeout();
+      //showButton(); //(appear right away after button click)
+    }
+
+    const startButton = document.querySelector('.js-start-button');
+
+    function showButton() {
+      startButton.style.display = 'block'; //display button
+      startButton.innerHTML = '<a href="../pages/hangman.html">start</a>';
+    }
+    setTimeout(showButton, 10000);
+   
+
+    
+   
+    
+  </script>
+</body>
+</html>
