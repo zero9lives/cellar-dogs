@@ -664,7 +664,21 @@
         result += 1;
       }
     }
-
+    
+  //for correct buttons
+   function toggleCorrectButton(selector) {
+      const button = document.querySelector(selector);
+      if (!button.classList.contains('is-toggled')) {
+        button.classList.add('is-toggled');
+        button.innerHTML = '1';
+        result += 1;
+      } else {
+        button.classList.remove('is-toggled');
+        button.innerHTML = '0';
+        result -= 1;
+      }
+    }
+    
     // PART 1: Generate/get user ID (PUT THIS FIRST)
     let userId = localStorage.getItem('gameUserId');
     if (!userId) {
@@ -713,4 +727,5 @@
 </body>
 
 </html>
+
 
